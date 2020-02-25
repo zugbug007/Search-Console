@@ -9,7 +9,7 @@
 library(searchConsoleR)
 
 ## change this to the website you want to download data for. Include http
-website <- siteAddress
+website <- "https://www.nationaltrust.org.uk"
 
 ## data is in search console reliably 3 days ago, so we donwnload from then
 ## today - 3 days
@@ -32,13 +32,15 @@ type <- c('web')
 scr_auth()
 
 ## first time stop here and wait for authorisation
-
+#dfe = c("device==DESKTOP","country==GBR", "page!=/home", "query~~outdoors")
+dfe = c("query~~nature")
 ## get the search analytics data
 data <- search_analytics(siteURL = website, 
                          startDate = start, 
                          endDate = end, 
                          dimensions = download_dimensions, 
-                         searchType = type)
+                         searchType = type,
+                         dimensionFilterExp = dfe)
 
 ## do stuff to the data
 ## combine with Google Analytics, filter, apply other stats etc.
@@ -50,3 +52,4 @@ filename <- paste("search_analytics",
                   type,".csv",sep="-")
 
 write.csv(data, filename)
+
