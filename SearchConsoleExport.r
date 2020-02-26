@@ -7,29 +7,29 @@
 ## Mark Edmondson (http://markedmondson.me)
 
 library(searchConsoleR)
-
+scr_auth()
 ## change this to the website you want to download data for. Include http
-website <- "https://www.nationaltrust.org.uk"
-
-## data is in search console reliably 3 days ago, so we donwnload from then
-## today - 3 days
-start <- Sys.Date() - 3
-## one days data, but change it as needed
-end <- Sys.Date() - 3 
-
-## what to download, choose between date, query, page, device, country
-download_dimensions <- c('date','query')
-
-## what type of Google search, choose between 'web', 'video' or 'image'
-type <- c('web')
-
-## other options available, check out ?search_analytics in the R console
 
 ## Authorize script with Search Console.  
 ## First time you will need to login to Google,
 ## but should auto-refresh after that so can be put in 
 ## Authorize script with an account that has access to website.
-scr_auth()
+
+website <- "https://www.nationaltrust.org.uk"
+
+## data is in search console reliably 3 days ago, so we donwnload from then
+## today - 3 days
+start <- Sys.Date() - 90
+## one days data, but change it as needed
+end <- Sys.Date() - 1
+
+## what to download, choose between date, query, page, device, country
+download_dimensions <- c('query')
+
+## what type of Google search, choose between 'web', 'video' or 'image'
+type <- c('web')
+
+## other options available, check out ?search_analytics in the R console
 
 ## first time stop here and wait for authorisation
 #dfe = c("device==DESKTOP","country==GBR", "page!=/home", "query~~outdoors")
